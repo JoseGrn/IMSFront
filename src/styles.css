@@ -1,5 +1,3 @@
-/* src/styles.css */
-
 /* Estilos globales */
 body {
     margin: 0;
@@ -21,6 +19,7 @@ body {
     min-height: 100vh;
   }
   
+  /* Estilo para los botones en general */
   button {
     background-color: #4CAF50;
     color: white;
@@ -36,13 +35,38 @@ body {
     background-color: #45a049;
   }
   
-  p {
-    font-size: 18px;
-    text-align: center;
-  }  
-
+  /* Estilos del header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .header h2 {
+    margin: 0;
+  }
+  
+  .go-back-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .go-back-button:hover {
+    background-color: #45a049;
+  }
+  
   /* Estilos del formulario de login */
-.login-form {
+  .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,6 +75,7 @@ body {
     width: 300px;
   }
   
+  .login-form select,
   .login-form input {
     width: 100%;
     padding: 10px;
@@ -81,3 +106,43 @@ body {
     background-color: #45a049;
   }
   
+  /* Botón de encendido y apagado para cambiar entre "Empresa" y "Empleado" */
+  .toggle-button {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-button::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+  }
+  
+  .toggle-button.active {
+    background-color: #4CAF50;
+  }
+  
+  .toggle-button.active::before {
+    left: 32px;
+  }
+  
+  /* Estilo para el hover en los botones */
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  p {
+    font-size: 18px;
+    text-align: center;
+  }  
