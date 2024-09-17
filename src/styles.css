@@ -145,4 +145,8 @@ body {
   p {
     font-size: 18px;
     text-align: center;
-  }  
+  } 
+
+  .modal-body {
+    word-wrap: break-word;  /* Forzar el ajuste del texto largo */
+  }
