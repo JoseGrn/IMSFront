@@ -1,24 +1,57 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
 import Header from '../components/Header/Header';
+import { Modal, Button } from 'react-bootstrap';  // Importar los componentes de modal
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isEmpresaMode, setIsEmpresaMode] = useState(true);  // Estado para el modo empresa/empleado
+  const [isEmpresaMode, setIsEmpresaMode] = useState(true);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleCloseModal = () => setShowModal(false);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
-    // Según el modo seleccionado, redirigimos a diferentes endpoints
-    const endpoint = isEmpresaMode
-      ? 'https://api.empresa.com/login'
-      : 'https://api.empleado.com/login';
+    setLoading(true);
+    setError('');
 
-    // Aquí harías una petición a la API con los datos de usuario y contraseña
-    console.log('Endpoint:', endpoint);
-    console.log('Usuario:', username);
-    console.log('Contraseña:', password);
+    const endpoint = isEmpresaMode
+      ? 'http://localhost:6001/api/Owner/loginowner'
+      : 'http://localhost:6001/api/User/loginuser';
+
+    const params = new URLSearchParams({
+      user: username,
+      password: password,
+    });
+
+    try {
+      const response = await fetch(`${endpoint}?${params}`, {
+        method: 'GET',
+      });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(message || 'Error en la autenticación');
+      }
+
+      const data = await response.json();
+      console.log('Datos recibidos:', data);
+
+      // Mostrar el mensaje en el modal
+      setModalMessage(`Login exitoso. Datos recibidos: ${JSON.stringify(data)}`);
+      setShowModal(true);
+
+    } catch (error) {
+      console.error('Error al hacer login:', error);
+      setError('Credenciales incorrectas o error en el servidor.');
+      setModalMessage('Error: Credenciales incorrectas o error en el servidor.');
+      setShowModal(true);  // Mostrar modal de error
+    } finally {
+      setLoading(false);
+    }
   };
 
   const toggleMode = () => {
@@ -57,9 +90,25 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Cargando...' : 'Login'}
+          </button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
       </div>
+
+      {/* Modal para mostrar el mensaje */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Mensaje</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
