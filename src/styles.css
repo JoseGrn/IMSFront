@@ -1,152 +1,278 @@
 /* Estilos globales */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  
-  /* Estilo para los botones en general */
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Estilos del header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .header h2 {
-    margin: 0;
-  }
-  
-  .go-back-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .go-back-button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Estilos del formulario de login */
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-    width: 300px;
-  }
-  
-  .login-form select,
-  .login-form input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .login-form label {
-    align-self: flex-start;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .login-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .login-form button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Botón de encendido y apagado para cambiar entre "Empresa" y "Empleado" */
-  .toggle-button {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    background-color: #ccc;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
-  
-  .toggle-button::before {
-    content: '';
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    background-color: white;
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    transition: all 0.3s;
-  }
-  
-  .toggle-button.active {
-    background-color: #4CAF50;
-  }
-  
-  .toggle-button.active::before {
-    left: 32px;
-  }
-  
-  /* Estilo para el hover en los botones */
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  p {
-    font-size: 18px;
-    text-align: center;
-  } 
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	color: #333;
+}
 
-  .modal-body {
-    word-wrap: break-word;  /* Forzar el ajuste del texto largo */
-  }
+h1 {
+	text-align: center;
+	color: #333;
+}
+
+/* Estilo para los botones en general */
+button {
+	background-color: #4caf50;
+	color: white;
+	padding: 10px 20px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+/* Estilos del header */
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #333;
+	color: white;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.header h2 {
+	margin: 0;
+}
+
+.go-back-button {
+	background-color: #4caf50;
+	color: white;
+	padding: 8px 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.go-back-button:hover {
+	background-color: #45a049;
+}
+
+/* Estilos del formulario de login */
+.login-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	margin: 0px;
+	width: 300px;
+}
+
+.login-form select,
+.login-form input {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.login-form label {
+	align-self: flex-start;
+	font-size: 14px;
+	color: #333;
+}
+
+.login-form button {
+	width: 100%;
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.login-form button:hover {
+	background-color: #45a049;
+}
+
+/* Botón de encendido y apagado para cambiar entre "Empresa" y "Empleado" */
+.toggle-button {
+	position: relative;
+	width: 60px;
+	height: 30px;
+	background-color: #ccc;
+	border-radius: 30px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+.toggle-button::before {
+	content: "";
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	background-color: white;
+	border-radius: 50%;
+	top: 2px;
+	left: 2px;
+	transition: all 0.3s;
+}
+
+.toggle-button.active {
+	background-color: #4caf50;
+}
+
+.toggle-button.active::before {
+	left: 32px;
+}
+
+/* Estilo para el hover en los botones */
+button:hover {
+	background-color: #45a049;
+}
+
+p {
+	font-size: 18px;
+	text-align: center;
+}
+
+.modal-body {
+	word-wrap: break-word; /* Forzar el ajuste del texto largo */
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background-color: white;
+	width: 100vw;
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+/* Logo styles */
+.logo-container {
+	margin-bottom: 20px;
+}
+
+.logo {
+	width: 150px;
+	height: auto;
+}
+
+/* Make form inputs responsive */
+.login-form input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+/* Button styles */
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: #28a745;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* Button hover effect */
+button:hover {
+	background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.container {
+		margin: 0 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.logo {
+		width: 80px;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.carousel {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.carousel-images {
+	display: flex;
+	width: 200%; /* Adjust based on the number of slides */
+	height: 100%;
+	animation: slide 15s linear infinite;
+}
+
+.carousel-slide {
+	display: flex;
+	width: 100%;
+}
+
+.carousel-slide img {
+	width: 33.33%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.7;
+	filter: blur(8px);
+}
+
+@keyframes slide {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%); /* Moves left by the width of one slide */
+	}
+}
+
+.home-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 2; /* Ensures the text is on top of the images */
+	color: white;
+}
+
+.home-container h1 {
+	font-size: 5rem;
+	margin-bottom: 20px;
+	color: white;
+}
+
+.home-container button {
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent button */
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.home-container button:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
