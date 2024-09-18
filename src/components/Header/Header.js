@@ -11,9 +11,9 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h2>Mi Aplicación</h2>
+      <h2>IMS</h2>
       <button className="go-back-button" onClick={handleGoHome}>
-        Menú Principal
+        Cerrar sesión
       </button>
     </header>
   );

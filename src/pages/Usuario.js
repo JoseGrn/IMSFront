@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir
 import Header from '../components/Header/Header'; // Importar el Header
 import { Modal, Button, Form } from 'react-bootstrap'; // Importar los componentes de modal y form
 import '../styles/Usuario.css'; // Importar el CSS
@@ -10,6 +11,8 @@ const Usuario = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // Producto seleccionado para editar
   const [newQuantity, setNewQuantity] = useState(''); // Nueva cantidad editable
   const [role, setRole] = useState(0); // Estado para almacenar el rol del usuario
+
+  const navigate = useNavigate(); // Para redirigir a otras páginas
 
   // Obtener el productsIdList, companyId y role desde localStorage
   const productsIdList = localStorage.getItem('productsIdList');
@@ -81,6 +84,16 @@ const Usuario = () => {
     }
   };
 
+  // Función para redirigir a la vista de orden de compra
+  const handleCreateOrder = () => {
+    navigate('/orden-compra');
+  };
+
+  // Función para redirigir a la vista de envio
+  const handleCreateShipment = () => {
+    navigate('/envio');
+  };
+
   return (
     <div>
       <Header />
@@ -140,6 +153,20 @@ const Usuario = () => {
             )}
           </Modal.Footer>
         </Modal>
+
+        {/* Botones en la parte inferior derecha */}
+        <div className="buttons-container">
+          {role === 1 || role === 2 || role === 3 ? (
+            <Button variant="success" onClick={handleCreateOrder} className="create-order-button">
+              Crear Orden de Compra
+            </Button>
+          ) : null}
+          {role === 1 || role === 2 ? (
+            <Button variant="primary" onClick={handleCreateShipment} className="create-shipment-button">
+              Crear Envío
+            </Button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

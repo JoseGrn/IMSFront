@@ -16,7 +16,8 @@ const EmpresaDetalle = () => {
   };
 
   const handleProductosClick = () => {
-    navigate(`/empresa/${empresa.companyId}/productos`);
+    // Redirigir a la vista de productos con la información de la empresa
+    navigate(`/empresa/${empresa.companyId}/productos`, { state: { empresa } });
   };
 
   const handleBackClick = () => {

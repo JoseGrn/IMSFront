@@ -13,7 +13,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header /> {/* Agregar el Header */}
       <div className="container">
         <h1>Bienvenido a la página principal</h1>
         <Button text="Login" onClick={handleLoginClick} />

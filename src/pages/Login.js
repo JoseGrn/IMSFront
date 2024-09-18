@@ -78,7 +78,6 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
       <div className="container">
         <h1>Iniciar sesión</h1>
         <div className="toggle-button" onClick={toggleMode}>

@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import Empresas from './pages/Empresas';
 import EmpresaDetalle from './pages/EmpresaDetalle';
 import Usuario from './pages/Usuario';
+import OrdenCompra from './pages/OrdenCompra';
+import Envio from './pages/Envio';
+import ProductosEmpresa from './pages/ProductosEmpresa';
 import './styles.css';
 
 function App() {
@@ -17,7 +20,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/empresas" element={<Empresas />} />
         <Route path="/empresa/:companyId" element={<EmpresaDetalle />} />
+        <Route path="/empresa/:companyId/productos" element={<ProductosEmpresa />} />
         <Route path="/usuario" element={<Usuario />} />
+        <Route path="/orden-compra" element={<OrdenCompra />} />
+        <Route path="/envio" element={<Envio />} />
       </Routes>
     </Router>
   );
