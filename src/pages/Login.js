@@ -74,7 +74,7 @@ const Login = () => {
 
 	return (
 		<div>
-			<div className="container">
+			<div className="containerLogin">
 				<div className="logo-container">
 					<img src={logo} alt="IMS" className="logo" />
 				</div>
