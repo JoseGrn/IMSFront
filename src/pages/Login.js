@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Para redirigir a otra página
 import Header from '../components/Header/Header';
 import { Modal, Button } from 'react-bootstrap';  // Importar los componentes de modal
 
@@ -10,6 +11,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate(); // Para redirigir al usuario
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -40,10 +42,26 @@ const Login = () => {
       const data = await response.json();
       console.log('Datos recibidos:', data);
 
-      // Mostrar el mensaje en el modal
-      setModalMessage(`Login exitoso. Datos recibidos: ${JSON.stringify(data)}`);
-      setShowModal(true);
-
+      if (isEmpresaMode) {
+        // Guardar ownerId, firstName y lastName en localStorage
+        localStorage.setItem('ownerId', data.ownerId);
+        localStorage.setItem('firstName', data.firstName);
+        localStorage.setItem('lastName', data.lastName);
+        
+        // Redirigir a la página de empresas
+        navigate('/empresas');
+      } else {
+        // Guardar información de usuario en localStorage
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('companyId', data.companyId);
+        localStorage.setItem('username', data.username);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('role', data.role);
+        localStorage.setItem('productsIdList', data.productsIdList);
+        
+        // Redirigir a la página de Usuario
+        navigate('/usuario');
+      }
     } catch (error) {
       console.error('Error al hacer login:', error);
       setError('Credenciales incorrectas o error en el servidor.');
@@ -66,7 +84,7 @@ const Login = () => {
         <div className="toggle-button" onClick={toggleMode}>
           <div className={isEmpresaMode ? 'toggle-button active' : 'toggle-button'}></div>
         </div>
-        <p>{isEmpresaMode ? 'Modo Empresa' : 'Modo Empleado'}</p>
+        <p>{isEmpresaMode ? 'Modo Empresa' : 'Modo Usuario'}</p>
         <form className="login-form" onSubmit={handleLogin}>
           <div>
             <label htmlFor="username">Usuario:</label>

@@ -1,0 +1,37 @@
+.usuario-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Para centrar verticalmente */
+    text-align: center; /* Para centrar el texto */
+  }
+  
+  /* Contenedor de productos en disposición horizontal */
+  .productos-list-horizontal {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los elementos pasen a la siguiente línea si es necesario */
+    justify-content: center; /* Centrar los productos */
+    gap: 20px; /* Espacio entre cada producto */
+    margin-top: 20px;
+  }
+  
+  /* Estilos para cada producto en formato horizontal */
+  .producto-item-horizontal {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 200px; /* Mínimo ancho para los productos */
+    text-align: center; /* Centrar el texto dentro de cada producto */
+    cursor: pointer;
+  }
+  
+  .producto-item-horizontal h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .producto-item-horizontal p {
+    margin: 5px 0;
+    font-size: 16px;
+  }  
