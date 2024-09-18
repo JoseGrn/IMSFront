@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redirigir a otra página
-import Header from '../components/Header/Header';
 import { Modal, Button } from 'react-bootstrap';  // Importar los componentes de modal
 
 const Login = () => {

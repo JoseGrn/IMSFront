@@ -1,7 +1,6 @@
 // src/pages/Home.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header/Header';  // Importar el Header
 import Button from '../components/Button/Button';
 
 const Home = () => {
