@@ -26,6 +26,7 @@
     list-style-type: none;  /* Eliminar los puntos de la lista */
     padding: 0;  /* Eliminar el padding por defecto de la lista */
     justify-content: flex-start;  /* Alineación de los elementos al inicio de la fila */
+    width: 75%;
 }
 
 /* Estilo de cada empresa */

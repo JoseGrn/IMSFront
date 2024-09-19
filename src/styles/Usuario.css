@@ -54,13 +54,8 @@
     gap: 10px;
   }
   
-  .create-order-button {
-    background-color: green;
-    color: white;
-  }
-  
   .create-shipment-button {
-    background-color: blue;
+    background-color: green;
     color: white;
   }
   

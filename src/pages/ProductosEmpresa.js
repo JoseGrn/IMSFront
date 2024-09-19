@@ -7,7 +7,7 @@ import '../styles/ProductosEmpresa.css'; // Crear un nuevo archivo CSS para los 
 
 const ProductosEmpresa = () => {
   const location = useLocation();
-  const { empresa } = location.state; // Recibir la información de la empresa
+  const { empresa } = location.state || {}; // Recibir la información de la empresa
   const [productos, setProductos] = useState([]);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false); // Controlar la visibilidad del modal para editar

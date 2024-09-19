@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redirigir a otra página
-import Header from '../components/Header/Header';
 import { Modal, Button } from 'react-bootstrap';  // Importar los componentes de modal
 
 const Login = () => {
@@ -12,6 +11,17 @@ const Login = () => {
   const [modalMessage, setModalMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate(); // Para redirigir al usuario
+
+  // Efecto para limpiar el localStorage y reiniciar variables cuando se carga la página de login
+  useEffect(() => {
+    // Limpiar localStorage
+    localStorage.clear();
+
+    // Reiniciar variables de estado
+    setUsername('');
+    setPassword('');
+    setError('');
+  }, []);
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -47,6 +57,7 @@ const Login = () => {
         localStorage.setItem('ownerId', data.ownerId);
         localStorage.setItem('firstName', data.firstName);
         localStorage.setItem('lastName', data.lastName);
+        localStorage.setItem('username', data.username);
         
         // Redirigir a la página de empresas
         navigate('/empresas');
@@ -62,6 +73,7 @@ const Login = () => {
         // Redirigir a la página de Usuario
         navigate('/usuario');
       }
+
     } catch (error) {
       console.error('Error al hacer login:', error);
       setError('Credenciales incorrectas o error en el servidor.');

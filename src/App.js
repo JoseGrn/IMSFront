@@ -10,6 +10,7 @@ import Usuario from './pages/Usuario';
 import OrdenCompra from './pages/OrdenCompra';
 import Envio from './pages/Envio';
 import ProductosEmpresa from './pages/ProductosEmpresa';
+import ProductosEmpresaUser from './pages/ProductosEmpresa';
 import './styles.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/empresa/:companyId" element={<EmpresaDetalle />} />
         <Route path="/empresa/:companyId/productos" element={<ProductosEmpresa />} />
         <Route path="/usuario" element={<Usuario />} />
+        <Route path="/usuario/:companyId/productos" element={<ProductosEmpresaUser />} />
         <Route path="/orden-compra" element={<OrdenCompra />} />
         <Route path="/envio" element={<Envio />} />
       </Routes>

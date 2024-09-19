@@ -11,6 +11,7 @@ const Usuario = () => {
   const [selectedProduct, setSelectedProduct] = useState(null); // Producto seleccionado para editar
   const [newQuantity, setNewQuantity] = useState(''); // Nueva cantidad editable
   const [role, setRole] = useState(0); // Estado para almacenar el rol del usuario
+  const [empresa, setEmpresa] = useState(null); // Estado para almacenar la información de la empresa
 
   const navigate = useNavigate(); // Para redirigir a otras páginas
 
@@ -35,10 +36,31 @@ const Usuario = () => {
     }
   };
 
-  // useEffect para hacer la llamada al API cuando se carga la página
+  // Función para obtener la información de la empresa si el usuario tiene Role 1
+  const obtenerEmpresa = async () => {
+    try {
+      const response = await fetch(`http://localhost:6001/api/Company/obtenerempresasbyid?companyId=${companyId}`);
+      
+      if (!response.ok) {
+        throw new Error('Error al obtener la información de la empresa');
+      }
+
+      const data = await response.json();
+      setEmpresa(data); // Guardar la información de la empresa
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  // useEffect para hacer las llamadas al API cuando se carga la página
   useEffect(() => {
     obtenerProductos();
     setRole(parseInt(userRole)); // Guardar el rol del usuario desde localStorage
+
+    // Si el usuario tiene Role 1, obtener la información de la empresa
+    if (parseInt(userRole) === 1) {
+      obtenerEmpresa();
+    }
   }, [userRole]);
 
   // Función para abrir el modal y seleccionar un producto
@@ -92,6 +114,16 @@ const Usuario = () => {
   // Función para redirigir a la vista de envio
   const handleCreateShipment = () => {
     navigate('/envio');
+  };
+
+  const handleUsuariosClick = () => {
+    // Redirigir a la vista de usuarios, pasando la información de la empresa
+    navigate(`/empresa/${companyId}/usuarios`, { state: { empresa } });
+  };
+
+  const handleProductosClick = () => {
+    // Redirigir a la vista de productos, pasando la información de la empresa
+    navigate(`/empresa/${companyId}/productos`, { state: { empresa } });
   };
 
   return (
@@ -156,13 +188,23 @@ const Usuario = () => {
 
         {/* Botones en la parte inferior derecha */}
         <div className="buttons-container">
+          {role === 1 ?(
+            <Button variant="success" onClick={handleUsuariosClick} className="create-shipment-button">
+                Modificar Usuarios
+            </Button>
+          ) : null}
+          {role === 1 ?(
+            <Button variant="success" onClick={handleProductosClick} className="create-shipment-button">
+                Modificar Productos
+            </Button>
+          ) : null}
           {role === 1 || role === 2 || role === 3 ? (
-            <Button variant="success" onClick={handleCreateOrder} className="create-order-button">
+            <Button variant="success" onClick={handleCreateOrder} className="create-shipment-button">
               Crear Orden de Compra
             </Button>
           ) : null}
           {role === 1 || role === 2 ? (
-            <Button variant="primary" onClick={handleCreateShipment} className="create-shipment-button">
+            <Button variant="success" onClick={handleCreateShipment} className="create-shipment-button">
               Crear Envío
             </Button>
           ) : null}

@@ -84,6 +84,13 @@ const Empresas = () => {
       const updatedEmpresas = await response.json();
       setEmpresas(updatedEmpresas);
 
+      Swal.fire({
+        icon: 'success',
+        title: 'Empresa agregada correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       setShowModal(false);
       setNewCompanyName('');
       setNewCompanyDescription('');
@@ -112,6 +119,13 @@ const Empresas = () => {
           : empresa
       );
       setEmpresas(updatedEmpresa);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Empresa editada correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       setShowEditModal(false);
     } catch (error) {
@@ -143,6 +157,13 @@ const Empresas = () => {
       localStorage.setItem('firstName', firstName);
       localStorage.setItem('lastName', lastName);
       localStorage.setItem('username', username);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Informacion editada correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       setShowEditOwnerModal(false);  // Cerrar el modal
     } catch (error) {
@@ -185,7 +206,6 @@ const Empresas = () => {
   const openEmpresaDetalle = (empresa) => {
     navigate(`/empresa/${empresa.companyId}`, { state: { empresa } }); // Pasar la empresa seleccionada
   };
-  
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
@@ -211,6 +231,49 @@ const Empresas = () => {
     setEditCompanyName(empresa.name);
     setEditCompanyDescription(empresa.description);
     setShowEditModal(true);
+  };
+
+  const handleDeleteCompany = async () => {
+    try {
+      const response = await fetch(`http://localhost:6001/api/Company/borrarempresa?companyId=${selectedCompany.companyId}&ownerId=${ownerId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al eliminar la empresa');
+      }
+
+      const updatedEmpresas = await response.json();
+      setEmpresas(updatedEmpresas);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Empresa eliminada correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      setShowEditModal(false); // Cerrar el modal después de eliminar
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const confirmDeleteCompany = () => {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Esta acción eliminará la empresa.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDeleteCompany();
+      }
+    });
   };
 
   if (loading) {
@@ -382,6 +445,9 @@ const Empresas = () => {
                 required
               />
             </Form.Group>
+            <Button variant="danger" onClick={confirmDeleteCompany} className="me-3">
+              Eliminar Empresa
+            </Button>
             <Button variant="primary" type="submit" className="mt-3">
               Guardar cambios
             </Button>
