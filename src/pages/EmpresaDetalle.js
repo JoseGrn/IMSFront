@@ -12,7 +12,7 @@ const EmpresaDetalle = () => {
   const { empresa } = location.state;
 
   const handleUsuariosClick = () => {
-    navigate(`/empresa/${empresa.companyId}/usuarios`);
+    navigate(`/empresa/${empresa.companyId}/usuarios`, { state: { empresa } });
   };
 
   const handleProductosClick = () => {

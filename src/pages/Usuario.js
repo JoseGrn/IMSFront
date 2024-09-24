@@ -6,6 +6,7 @@ import '../styles/Usuario.css'; // Importar el CSS
 
 const Usuario = () => {
   const [productos, setProductos] = useState([]); // Estado para almacenar la lista de productos
+  const [productosname, setProductosName] = useState([]); // Estado para almacenar la lista de productos
   const [error, setError] = useState(''); // Estado para manejar errores
   const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
   const [selectedProduct, setSelectedProduct] = useState(null); // Producto seleccionado para editar
@@ -52,6 +53,23 @@ const Usuario = () => {
     }
   };
 
+  const obtenerProductosNombres = async () => {
+    try {
+      console.log(empresa.companyId)
+      const response = await fetch(`http://localhost:6001/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
+
+      if (!response.ok) {
+        throw new Error('Error al obtener los nombres de productos');
+      }
+      console.log(response)
+
+      const data = await response.json();
+      setProductosName(data); // Guardar los nombres de productos en el estado
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   // useEffect para hacer las llamadas al API cuando se carga la página
   useEffect(() => {
     obtenerProductos();
@@ -62,6 +80,13 @@ const Usuario = () => {
       obtenerEmpresa();
     }
   }, [userRole]);
+
+  useEffect(() => {
+    // Verificar si empresa está disponible antes de llamar a obtenerProductosNombres
+    if (empresa) {
+      obtenerProductosNombres();
+    }
+  }, [empresa]);
 
   // Función para abrir el modal y seleccionar un producto
   const handleOpenModal = (producto) => {
@@ -117,8 +142,7 @@ const Usuario = () => {
   };
 
   const handleUsuariosClick = () => {
-    // Redirigir a la vista de usuarios, pasando la información de la empresa
-    navigate(`/empresa/${companyId}/usuarios`, { state: { empresa } });
+    navigate(`/empresa/${empresa.companyId}/usuarios`, { state: { empresa } });
   };
 
   const handleProductosClick = () => {

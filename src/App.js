@@ -11,6 +11,9 @@ import OrdenCompra from './pages/OrdenCompra';
 import Envio from './pages/Envio';
 import ProductosEmpresa from './pages/ProductosEmpresa';
 import ProductosEmpresaUser from './pages/ProductosEmpresa';
+import UsuariosEmpresa from './pages/UsuariosEmpresa';
+import DetallesUsuario from './pages/DetallesUsuario';
+import CrearUsuario from './pages/CrearUsuario';
 import './styles.css';
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
         <Route path="/empresas" element={<Empresas />} />
         <Route path="/empresa/:companyId" element={<EmpresaDetalle />} />
         <Route path="/empresa/:companyId/productos" element={<ProductosEmpresa />} />
+        <Route path="/empresa/:companyId/usuarios" element={<UsuariosEmpresa />} />
+        <Route path="/empresa/:companyId/usuarios/:userId" element={<DetallesUsuario />} />
+        <Route path="/empresa/:companyId/usuarios/crear" element={<CrearUsuario  />} />
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/usuario/:companyId/productos" element={<ProductosEmpresaUser />} />
         <Route path="/orden-compra" element={<OrdenCompra />} />
