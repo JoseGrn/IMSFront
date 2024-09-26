@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redirigir a otra página
 import { Modal, Button } from 'react-bootstrap';  // Importar los componentes de modal
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importar el componente FontAwesome
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // Importar íconos de ojo
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isEmpresaMode, setIsEmpresaMode] = useState(true);
+  const [isEmpresaMode, setIsEmpresaMode] = useState(false); // Cambiado a 'false' para que el modo Empleado esté activo por defecto
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Nuevo estado para mostrar/ocultar contraseña
   const navigate = useNavigate(); // Para redirigir al usuario
 
   // Efecto para limpiar el localStorage y reiniciar variables cuando se carga la página de login
@@ -31,8 +34,8 @@ const Login = () => {
     setError('');
 
     const endpoint = isEmpresaMode
-      ? 'http://localhost:6001/api/Owner/loginowner'
-      : 'http://localhost:6001/api/User/loginuser';
+      ? 'http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Owner/loginowner'
+      : 'http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/loginuser';
 
     const params = new URLSearchParams({
       user: username,
@@ -88,6 +91,11 @@ const Login = () => {
     setIsEmpresaMode(!isEmpresaMode);
   };
 
+  // Función para alternar la visibilidad de la contraseña
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <div className="container">
@@ -97,7 +105,7 @@ const Login = () => {
         </div>
         <p>{isEmpresaMode ? 'Modo Empresa' : 'Modo Usuario'}</p>
         <form className="login-form" onSubmit={handleLogin}>
-          <div>
+          <div className="form-group">
             <label htmlFor="username">Usuario:</label>
             <input
               type="text"
@@ -108,22 +116,34 @@ const Login = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="password">Contraseña:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Ingresa tu contraseña"
-              required
-            />
+            <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Ingresa tu contraseña"
+                required
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEyeSlash : faEye}
+                onClick={toggleShowPassword}
+                style={{
+                  marginLeft: '10px',
+                  cursor: 'pointer',
+                  color: 'black',
+                }}
+              />
+            </div>
           </div>
           <button type="submit" disabled={loading}>
             {loading ? 'Cargando...' : 'Login'}
           </button>
           {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
+
       </div>
 
       {/* Modal para mostrar el mensaje */}

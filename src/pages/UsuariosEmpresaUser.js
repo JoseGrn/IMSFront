@@ -5,7 +5,7 @@ import Header from '../components/Header/Header';
 import Swal from 'sweetalert2'; // Importar SweetAlert2
 import '../styles/UsuariosEmpresa.css'; // Crear un nuevo archivo CSS para los estilos
 
-const UsuariosEmpresa = () => {
+const UsuariosEmpresaUser = () => {
   const location = useLocation();
   const { empresa } = location.state || {}; // Recibir la información de la empresa
   const [productos, setProductos] = useState([]);
@@ -101,8 +101,8 @@ const UsuariosEmpresa = () => {
     });
   };
 
-  const openEmpresaDetalle = (empresa) => {
-    navigate(`/empresa/${empresa.companyId}`, { state: { empresa } }); // Pasar la empresa seleccionada
+  const openUsuario = () => {
+    navigate(`/usuario/`); // Pasar la empresa seleccionada
   };
 
   const handleCreateUser = () => {
@@ -114,7 +114,7 @@ const UsuariosEmpresa = () => {
       <Header />
       <div className="usuarios-empresa-container">
         {/* Botón "Regresar" */}
-        <button onClick={() =>  openEmpresaDetalle(empresa)} className="back-button">
+        <button onClick={() =>  openUsuario()} className="back-button">
           Regresar
         </button>
 
@@ -122,7 +122,9 @@ const UsuariosEmpresa = () => {
         {error && <p style={{ color: 'red' }}>Error: {error}</p>}
         {usuarios.length > 0 ? (
           <div className="usuarios-list-horizontal">
-            {usuarios.map((usuario) => (
+            {usuarios
+            .filter((usuario) => usuario.role !== 1) // Filtrar los usuarios que no tienen rol 1
+            .map((usuario) => (
               <div key={usuario.userId} className="usuario-item-horizontal">
                 <h3>{usuario.name}</h3>
                 <p><strong>Rol:</strong> {usuario.role}</p>
@@ -153,4 +155,4 @@ const UsuariosEmpresa = () => {
   );
 };
 
-export default UsuariosEmpresa;
+export default UsuariosEmpresaUser;

@@ -85,7 +85,7 @@ const DetallesUsuario = () => {
   // Función para guardar cambios del usuario y regresar a la vista anterior
   const handleSaveUser = async () => {
     try {
-      const response = await fetch('http://localhost:6001/api/User/editarusuario', {
+      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/editarusuario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,11 +118,21 @@ const DetallesUsuario = () => {
     }
   };
 
+  // Función para regresar a la página anterior
+  const handleGoBack = () => {
+    navigate(-1); // Navega a la página anterior
+  };
+
   return (
     <div>
       <Header />
+      {/* Botón de regresar */}
+      <button variant="secondary" onClick={handleGoBack} className="back-button">
+          Regresar
+        </button>
       <div className="detalles-usuario-container">
         <h1>Editar Usuario</h1>
+
         <Form>
           <Form.Group controlId="username">
             <Form.Label>Nombre de Usuario</Form.Label>
@@ -176,10 +186,13 @@ const DetallesUsuario = () => {
             <h5>Productos Seleccionados:</h5>
             {selectedProducts.length > 0 ? (
               selectedProducts.map((productId) => {
+                // Verifica si el producto existe en la lista actual de productos
                 const product = productos.find((p) => p.productId === parseInt(productId));
-                return (
+
+                // Solo imprime si el producto existe en la lista actual de productos
+                return product ? (
                   <Badge key={productId} pill bg="primary" className="me-2">
-                    {product?.name}
+                    {product.name}
                     <span
                       className="remove-product ms-2"
                       onClick={() => handleRemoveProduct(productId)}
@@ -188,7 +201,7 @@ const DetallesUsuario = () => {
                       x
                     </span>
                   </Badge>
-                );
+                ) : null; // No retorna nada si el producto no existe
               })
             ) : (
               <p>No hay productos seleccionados</p>
@@ -227,7 +240,7 @@ const DetallesUsuario = () => {
           </Button>
         </Form>
       </div>
-      <br></br>
+      <br />
     </div>
   );
 };

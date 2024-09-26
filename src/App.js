@@ -12,6 +12,7 @@ import Envio from './pages/Envio';
 import ProductosEmpresa from './pages/ProductosEmpresa';
 import ProductosEmpresaUser from './pages/ProductosEmpresa';
 import UsuariosEmpresa from './pages/UsuariosEmpresa';
+import UsuariosEmpresaUser from './pages/UsuariosEmpresaUser';
 import DetallesUsuario from './pages/DetallesUsuario';
 import CrearUsuario from './pages/CrearUsuario';
 import './styles.css';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/empresa/:companyId/usuarios/crear" element={<CrearUsuario  />} />
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/usuario/:companyId/productos" element={<ProductosEmpresaUser />} />
+        <Route path="/usuario/:companyId/usuarios" element={<UsuariosEmpresaUser />} />
         <Route path="/orden-compra" element={<OrdenCompra />} />
         <Route path="/envio" element={<Envio />} />
       </Routes>

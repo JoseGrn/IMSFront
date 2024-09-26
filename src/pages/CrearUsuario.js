@@ -39,6 +39,10 @@ const CrearUsuario = () => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Navega a la página anterior
+  };
+
   const handleRemoveProduct = (productIdToRemove) => {
     const updatedProducts = selectedProducts.filter(
       (productId) => productId !== productIdToRemove
@@ -81,7 +85,7 @@ const CrearUsuario = () => {
   // Función para crear un nuevo usuario y regresar a la vista anterior
   const handleSaveUser = async () => {
     try {
-      const response = await fetch('http://localhost:6001/api/User/crearuser', {
+      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/crearuser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,6 +122,9 @@ const CrearUsuario = () => {
   return (
     <div>
       <Header />
+      <button variant="secondary" onClick={handleGoBack} className="back-button">
+          Regresar
+        </button>
       <div className="detalles-usuario-container">
         <h1>Crear Usuario</h1>
         <Form>

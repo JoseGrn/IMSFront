@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir
 import Header from '../components/Header/Header'; // Importar el Header
 import { Modal, Button, Form } from 'react-bootstrap'; // Importar los componentes de modal y form
+import Swal from 'sweetalert2'; // Importar SweetAlert2
 import '../styles/Usuario.css'; // Importar el CSS
 
 const Usuario = () => {
   const [productos, setProductos] = useState([]); // Estado para almacenar la lista de productos
   const [productosname, setProductosName] = useState([]); // Estado para almacenar la lista de productos
+  const [addition, setAddition] = useState(''); // Para manejar la adición
+  const [subtraction, setSubtraction] = useState(''); // Para manejar la sustracción
   const [error, setError] = useState(''); // Estado para manejar errores
   const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
   const [selectedProduct, setSelectedProduct] = useState(null); // Producto seleccionado para editar
@@ -24,7 +27,7 @@ const Usuario = () => {
   // Función para obtener la lista de productos
   const obtenerProductos = async () => {
     try {
-      const response = await fetch(`http://localhost:6001/api/Product/obtenerlistaproductos?productos=${productsIdList}&companyId=${companyId}`);
+      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/obtenerlistaproductos?productos=${productsIdList}&companyId=${companyId}`);
       
       if (!response.ok) {
         throw new Error('Error al obtener la lista de productos');
@@ -40,7 +43,7 @@ const Usuario = () => {
   // Función para obtener la información de la empresa si el usuario tiene Role 1
   const obtenerEmpresa = async () => {
     try {
-      const response = await fetch(`http://localhost:6001/api/Company/obtenerempresasbyid?companyId=${companyId}`);
+      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Company/obtenerempresasbyid?companyId=${companyId}`);
       
       if (!response.ok) {
         throw new Error('Error al obtener la información de la empresa');
@@ -56,7 +59,7 @@ const Usuario = () => {
   const obtenerProductosNombres = async () => {
     try {
       console.log(empresa.companyId)
-      const response = await fetch(`http://localhost:6001/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
+      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
 
       if (!response.ok) {
         throw new Error('Error al obtener los nombres de productos');
@@ -97,19 +100,40 @@ const Usuario = () => {
 
   // Función para cerrar el modal
   const handleCloseModal = () => {
-    setShowModal(false); // Cerrar el modal
-    setSelectedProduct(null); // Limpiar el producto seleccionado
-  };
+    setShowModal(false); // Cierra el modal
+    setSelectedProduct(null); // Limpia el producto seleccionado
+    setNewQuantity(''); // Reinicia la cantidad
+    setAddition(''); // Reinicia el valor de adición
+    setSubtraction(''); // Reinicia el valor de sustracción
+  };  
 
   // Función para guardar la cantidad modificada
   const handleSaveQuantity = async () => {
-    if (!selectedProduct || !newQuantity) {
-      setError("Debe seleccionar un producto y asignar una cantidad");
+    if (!selectedProduct || (!addition && !subtraction)) {
+      setError("Debe ingresar una adición o sustracción para modificar la cantidad");
+      return;
+    }
+  
+    // Calcula la nueva cantidad aplicando la adición y la sustracción
+    let updatedQuantity = parseInt(newQuantity, 10) || 0;
+  
+    if (addition) {
+      updatedQuantity += parseInt(addition, 10); // Sumar la cantidad ingresada
+    }
+  
+    if (subtraction) {
+      updatedQuantity -= parseInt(subtraction, 10); // Restar la cantidad ingresada
+    }
+  
+    if (updatedQuantity < 0) {
+      setError("La cantidad resultante no puede ser negativa.");
       return;
     }
 
+    console.log(updatedQuantity)
+
     try {
-      const url = `http://localhost:6001/api/Product/modificarcantidad?cantidad=${newQuantity}&productId=${selectedProduct.productId}&companyId=${companyId}&listaProductos=${productsIdList}`;
+      const url = `http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/modificarcantidad?cantidad=${updatedQuantity}&productId=${selectedProduct.productId}&companyId=${companyId}&listaProductos=${productsIdList}`;
 
       const response = await fetch(url, {
         method: 'POST',
@@ -125,7 +149,15 @@ const Usuario = () => {
 
       const updatedProducts = await response.json(); // Obtener la lista actualizada de productos
       setProductos(updatedProducts); // Actualizar el estado con la nueva lista de productos
+      handleCloseModal()
       setShowModal(false); // Cerrar el modal
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Producto actualizado correctamente',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       setError(error.message);
     }
@@ -142,7 +174,7 @@ const Usuario = () => {
   };
 
   const handleUsuariosClick = () => {
-    navigate(`/empresa/${empresa.companyId}/usuarios`, { state: { empresa } });
+    navigate(`/usuario/${empresa.companyId}/usuarios`, { state: { empresa } });
   };
 
   const handleProductosClick = () => {
@@ -181,16 +213,32 @@ const Usuario = () => {
               <>
                 <h3>{selectedProduct.name}</h3>
                 <p>{selectedProduct.description}</p>
+                <p><strong>Cantidad actual:</strong> {newQuantity}</p>
                 <Form>
                   <Form.Group controlId="cantidad">
-                    <Form.Label>Cantidad</Form.Label>
-                    <Form.Control
-                      type="number"
-                      value={newQuantity}
-                      onChange={(e) => setNewQuantity(e.target.value)}
-                      min="0"
-                      disabled={role !== 1 && role !== 2} // Desactivar el campo si el rol no es 1 o 2
-                    />
+                    <div className="quantity-controls">
+                      {/* Campo para adición */}
+                      <Form.Group controlId="addition" className="mt-2">
+                        <Form.Label>Agregar:</Form.Label>
+                        <Form.Control
+                          type="number"
+                          value={addition}
+                          onChange={(e) => setAddition(e.target.value)}
+                          min="0"
+                        />
+                      </Form.Group>
+
+                      {/* Campo para sustracción */}
+                      <Form.Group controlId="subtraction" className="mt-2">
+                        <Form.Label>Eliminar:</Form.Label>
+                        <Form.Control
+                          type="number"
+                          value={subtraction}
+                          onChange={(e) => setSubtraction(e.target.value)}
+                          min="0"
+                        />
+                      </Form.Group>
+                    </div>
                   </Form.Group>
                 </Form>
               </>
@@ -205,7 +253,7 @@ const Usuario = () => {
                 Guardar Cambios
               </Button>
             ) : (
-              <p>No tienes permiso para modificar este producto.</p> // Mostrar mensaje si el rol no es 1 o 2
+              <p>No tienes permiso para modificar este producto.</p>
             )}
           </Modal.Footer>
         </Modal>
