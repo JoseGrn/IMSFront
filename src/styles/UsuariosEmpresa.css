@@ -1,0 +1,90 @@
+/* Contenedor principal centrado vertical y horizontalmente */
+.usuarios-empresa-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh; /* Hacer que el contenedor ocupe toda la altura de la pantalla */
+    padding: 20px;
+  }
+  
+  /* Título centrado */
+  .usuarios-empresa-container h1 {
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+  }
+  
+  /* Contenedor de usuarios en disposición horizontal */
+  .usuarios-list-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar los usuarios horizontalmente */
+    gap: 20px;
+    margin-top: 20px;
+    width: 70%; /* Asegurarse de que los usuarios se ajusten al ancho completo */
+  }
+  
+  /* Estilos para cada usuario en formato horizontal */
+  .usuario-item-horizontal {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 200px; /* Ajustar el ancho mínimo */
+    text-align: center; /* Centrar el contenido dentro de cada usuario */
+    cursor: pointer; /* Cambiar el cursor a pointer para indicar que el usuario es clicable */
+    transition: all 0.3s ease;
+  }
+  
+  .usuario-item-horizontal:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+    transform: scale(1.05);
+  }
+  
+  .usuario-item-horizontal h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .usuario-item-horizontal p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  /* Estilos para el botón "Regresar" */
+  .back-button {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    background-color: #6c757d; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Estilos para el botón "Agregar Usuario" */
+  .add-user-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-user-button:hover {
+    background-color: darkgreen;
+  }
+  

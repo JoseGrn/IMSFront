@@ -1,0 +1,73 @@
+/* Estilos específicos para la página de Empresas */
+
+/* Estilo del botón de agregar empresa */
+.add-company-button {
+    background-color: green;  /* Cambiar el color de fondo a verde */
+    color: white;  /* Texto en blanco */
+    font-size: 18px;  /* Hacer el texto más grande */
+    padding: 15px 30px;  /* Añadir espacio interno para hacer el botón más grande */
+    border: none;  /* Quitar el borde por defecto */
+    border-radius: 5px;  /* Bordes redondeados */
+    position: fixed;  /* Posicionarlo en un lugar específico */
+    bottom: 20px;  /* Separar del fondo */
+    right: 20px;  /* Separar del lado derecho */
+    cursor: pointer;  /* Mostrar cursor de mano */
+}
+  
+.add-company-button:hover {
+    background-color: #45a049;  /* Cambiar el color en hover */
+}
+
+/* Estilo de la lista de empresas en disposición horizontal */
+.empresa-list {
+    display: flex;  /* Usar flexbox para disposición horizontal */
+    flex-wrap: wrap;  /* Permitir que los elementos pasen a la siguiente línea si es necesario */
+    gap: 10px;  /* Añadir espacio entre las empresas */
+    list-style-type: none;  /* Eliminar los puntos de la lista */
+    padding: 0;  /* Eliminar el padding por defecto de la lista */
+    justify-content: flex-start;  /* Alineación de los elementos al inicio de la fila */
+    width: 75%;
+}
+
+/* Estilo de cada empresa */
+.empresa {
+    background-color: green;
+    padding: 10px;
+    margin: 0;
+    color: white;
+    border-radius: 5px;
+    flex: 0 1 150px;
+    max-width: 150px;
+    text-align: center;
+    display: flex;          /* Usar Flexbox para disposición horizontal */
+    justify-content: space-between;  /* Distribuir el espacio entre el nombre y el icono */
+    align-items: center;    /* Alinear verticalmente al centro */
+    box-sizing: border-box;
+    transition: background-color 0.3s ease; /* Añadir transición para suavizar el cambio de color */
+}
+
+/* Estilo para el cambio de color cuando el usuario pasa el cursor por encima */
+.empresa:hover {
+    background-color: #228B22;  /* Cambiar a un verde más oscuro cuando el usuario pasa el cursor */
+    cursor: pointer;  /* Mostrar cursor de mano */
+}
+
+/* Estilo del ícono de edición */
+.empresa button {
+    background-color: transparent;  /* Fondo transparente */
+    border: none;                   /* Sin bordes */
+    cursor: pointer;
+    padding: 0;
+}
+
+.empresa h3 {
+    margin: 0;  /* Quitar el margen extra alrededor del título */
+    font-size: 16px;
+}
+
+/* Estilo para el menú de usuario */
+.user-menu {
+    position: absolute;
+    top: 60px;  /* Ajusta este valor para que el botón esté más abajo del header */
+    right: 10px;
+}

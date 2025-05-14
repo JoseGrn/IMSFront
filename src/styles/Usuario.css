@@ -1,0 +1,61 @@
+/* Estilos para los productos */
+.usuario-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Para centrar verticalmente */
+    text-align: center; /* Para centrar el texto */
+  }
+  
+  /* Contenedor de productos en disposición horizontal */
+  .productos-list-horizontal {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los elementos pasen a la siguiente línea si es necesario */
+    justify-content: center; /* Centrar los productos */
+    gap: 20px; /* Espacio entre cada producto */
+    margin-top: 20px;
+  }
+  
+  /* Estilos para cada producto en formato horizontal */
+  .producto-item-horizontal {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 200px; /* Mínimo ancho para los productos */
+    text-align: center; /* Centrar el texto dentro de cada producto */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transición para que el hover sea suave */
+  }
+  
+  .producto-item-horizontal:hover {
+    background-color: #e0e0e0; /* Cambia el fondo al hacer hover */
+    border-color: #999; /* Cambia el color del borde al hacer hover */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al hacer hover */
+  }
+  
+  .producto-item-horizontal h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .producto-item-horizontal p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  /* Botones en la parte inferior derecha */
+  .buttons-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .create-shipment-button {
+    background-color: green;
+    color: white;
+  }
+  

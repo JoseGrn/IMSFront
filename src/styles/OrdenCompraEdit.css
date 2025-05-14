@@ -1,0 +1,198 @@
+.orden-compra-crear-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.orden-compra-crear-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.orden-compra-crear-back-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.orden-compra-crear-back-button:hover {
+    background-color: #5a6268;
+}
+
+.orden-compra-crear-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.orden-compra-crear-form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.orden-compra-crear-form-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.orden-compra-crear-form-col {
+    flex: 1;
+}
+
+.orden-compra-crear-form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.orden-compra-crear-input,
+.orden-compra-crear-select,
+.orden-compra-crear-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.orden-compra-crear-select {
+    background-color: #fff;
+}
+
+.orden-compra-crear-input[readonly] {
+    background-color: #e9ecef;
+}
+
+.orden-compra-crear-textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+.orden-compra-crear-products-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.orden-compra-crear-products-table th,
+.orden-compra-crear-products-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.orden-compra-crear-products-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.orden-compra-crear-products-table td input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.orden-compra-crear-total-section {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.orden-compra-crear-submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.orden-compra-crear-submit-button:hover {
+    background-color: #218838;
+}
+
+/* Estilos adicionales para pantalla de carga */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Botones de agregar y eliminar productos */
+.orden-compra-crear-remove-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orden-compra-crear-add-button {
+    background-color: #007bff; /* Fondo azul similar al encabezado de la tabla */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s;
+}
+
+.orden-compra-crear-add-button:hover {
+    background-color: #0056b3; /* Un azul más oscuro para el efecto hover */
+}
+
+
+.orden-compra-crear-remove-button {
+    color: red;
+}

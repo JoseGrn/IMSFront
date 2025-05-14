@@ -1,0 +1,105 @@
+.purchase-order-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.purchase-order-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    border: 2px solid transparent;
+    position: relative;
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.purchase-order-card-pending {
+    border-color: yellow;
+}
+
+.purchase-order-card-accepted {
+    border-color: green;
+}
+
+.purchase-order-card-rejected {
+    border-color: red;
+}
+
+.purchase-order-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.purchase-order-details {
+    width: 100%;
+}
+
+/* Botones visibles solo al seleccionar la tarjeta */
+.purchase-order-button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.purchase-order-btn {
+    background: none;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.purchase-order-btn i {
+    font-size: 16px;
+}
+
+.purchase-order-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.purchase-order-back-button {
+    background-color: #6c757d; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px; /* Añade espacio alrededor del botón */
+    transition: background-color 0.3s;
+}
+
+.purchase-order-create-button {
+    background-color: green; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px; /* Añade espacio alrededor del botón */
+    transition: background-color 0.3s;
+}
+
+.purchase-order-back-button:hover {
+    background-color: #5a6268;
+}
+
+.purchase-order-create-button:hover {
+    background-color: darkgreen;
+}

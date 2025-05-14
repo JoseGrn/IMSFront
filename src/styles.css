@@ -1,0 +1,167 @@
+/* Estilos globales */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+  }
+  
+  /* Estilo para los botones en general */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos del header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .header h2 {
+    margin: 0;
+  }
+  
+  .go-back-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .go-back-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilos del formulario de login */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 300px;
+  }
+  
+  .login-form select,
+  .login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .login-form label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px; /* Espacio entre el label y el input */
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .login-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .login-form .form-group {
+    display: flex;
+    flex-direction: column; /* Coloca el label arriba del input */
+    width: 100%;
+  }    
+  
+  /* Botón de encendido y apagado para cambiar entre "Empresa" y "Empleado" */
+  .toggle-button {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .toggle-button::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+  }
+  
+  .toggle-button.active {
+    background-color: #4CAF50;
+  }
+  
+  .toggle-button.active::before {
+    left: 32px;
+  }
+  
+  /* Estilo para el hover en los botones */
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  p {
+    font-size: 18px;
+    text-align: center;
+  } 
+
+  .modal-body {
+    word-wrap: break-word;  /* Forzar el ajuste del texto largo */
+  }
+
+  
