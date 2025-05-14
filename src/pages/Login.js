@@ -34,8 +34,8 @@ const Login = () => {
     setError('');
 
     const endpoint = isEmpresaMode
-      ? 'http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Owner/loginowner'
-      : 'http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/loginuser';
+      ? 'https://api.maderasdelatlantico.com/api/Owner/loginowner'
+      : 'https://api.maderasdelatlantico.com/api/User/loginuser';
 
     const params = new URLSearchParams({
       user: username,

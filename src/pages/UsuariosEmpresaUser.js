@@ -17,7 +17,7 @@ const UsuariosEmpresaUser = () => {
   // Función para obtener los usuarios de la empresa
   const obtenerUsuarios = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/obtenerusers?companyId=${empresa.companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/User/obtenerusers?companyId=${empresa.companyId}`);
 
       if (!response.ok) {
         throw new Error('Error al obtener los usuarios de la empresa');
@@ -33,7 +33,7 @@ const UsuariosEmpresaUser = () => {
   // Función para obtener los nombres de productos y almacenarlos
   const obtenerProductosNombres = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
 
       if (!response.ok) {
         throw new Error('Error al obtener los nombres de productos');
@@ -60,7 +60,7 @@ const UsuariosEmpresaUser = () => {
   // Función para eliminar un usuario
   const handleDeleteUser = async (userId) => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/eliminaruser?userId=${userId}&companyId=${empresa.companyId}`, {
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/User/eliminaruser?userId=${userId}&companyId=${empresa.companyId}`, {
         method: 'DELETE',
       });
 

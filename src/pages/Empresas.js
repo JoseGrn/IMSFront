@@ -46,7 +46,7 @@ const Empresas = () => {
 
     const fetchEmpresas = async () => {
       try {
-        const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Company/obtenerempresas?ownerId=${ownerId}`);
+        const response = await fetch(`https://api.maderasdelatlantico.com/api/Company/obtenerempresas?ownerId=${ownerId}`);
         if (!response.ok) {
           throw new Error('Error al obtener las empresas');
         }
@@ -65,7 +65,7 @@ const Empresas = () => {
   const handleCreateCompany = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Company/crearempresa', {
+      const response = await fetch('https://api.maderasdelatlantico.com/api/Company/crearempresa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ const Empresas = () => {
   const handleEditCompany = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Company/editarempresa?companyId=${selectedCompany.companyId}&name=${editCompanyName}&description=${editCompanyDescription}&ownerId=${ownerId}`, {
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Company/editarempresa?companyId=${selectedCompany.companyId}&name=${editCompanyName}&description=${editCompanyDescription}&ownerId=${ownerId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ const Empresas = () => {
   const handleEditOwner = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Owner/editowner', {
+      const response = await fetch('https://api.maderasdelatlantico.com/api/Owner/editowner', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ const Empresas = () => {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Owner/changepassword?password=${password}&ownerId=${ownerId}`, {
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Owner/changepassword?password=${password}&ownerId=${ownerId}`, {
         method: 'POST',
       });
 
@@ -235,7 +235,7 @@ const Empresas = () => {
 
   const handleDeleteCompany = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Company/borrarempresa?companyId=${selectedCompany.companyId}&ownerId=${ownerId}`, {
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Company/borrarempresa?companyId=${selectedCompany.companyId}&ownerId=${ownerId}`, {
         method: 'DELETE',
       });
 

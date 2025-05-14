@@ -8,7 +8,16 @@ import Empresas from './pages/Empresas';
 import EmpresaDetalle from './pages/EmpresaDetalle';
 import Usuario from './pages/Usuario';
 import OrdenCompra from './pages/OrdenCompra';
+import OrdenCompraExam from './pages/OrdenCompraExam';
+import OrdenCompraEdit from './pages/OrdenCompraEdit';
+import OrdenCompraCreate from './pages/OrdenCompraCreate';
+import OrdenCompraCliente from './pages/OrdenCompraCliente';
+import OrdenCompraCreateCliente from './pages/OrdenCompraCreateCliente';
+import OrdenCompraEditCliente from './pages/OrdenCompraEditCliente';
+import OrdenCompraExamCliente from './pages/OrdenCompraExamCliente';
 import Envio from './pages/Envio';
+import EnvioCreate from './pages/EnvioCreate';
+import EnvioEdit from './pages/EnvioEditar';
 import ProductosEmpresa from './pages/ProductosEmpresa';
 import ProductosEmpresaUser from './pages/ProductosEmpresa';
 import UsuariosEmpresa from './pages/UsuariosEmpresa';
@@ -33,7 +42,16 @@ function App() {
         <Route path="/usuario/:companyId/productos" element={<ProductosEmpresaUser />} />
         <Route path="/usuario/:companyId/usuarios" element={<UsuariosEmpresaUser />} />
         <Route path="/orden-compra" element={<OrdenCompra />} />
+        <Route path="/orden-compra-exam" element={<OrdenCompraExam />} />
+        <Route path="/orden-compra-edit" element={<OrdenCompraEdit />} />
+        <Route path="/orden-compra-create" element={<OrdenCompraCreate />} />
+        <Route path="/orden-compra-cliente" element={<OrdenCompraCliente />} />
+        <Route path="/orden-compra-cliente-create" element={<OrdenCompraCreateCliente />} />
+        <Route path="/orden-compra-cliente-edit" element={<OrdenCompraEditCliente />} />
+        <Route path="/orden-compra-cliente-exam" element={<OrdenCompraExamCliente />} />
         <Route path="/envio" element={<Envio />} />
+        <Route path="/envio-create" element={<EnvioCreate />} />
+        <Route path="/envio-editar" element={<EnvioEdit />} />
       </Routes>
     </Router>
   );

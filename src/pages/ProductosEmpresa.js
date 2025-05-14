@@ -25,7 +25,7 @@ const ProductosEmpresa = () => {
   // Función para obtener los productos de la empresa
   const obtenerProductos = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/obtenerproductosgeneral?companyId=${empresa.companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Product/obtenerproductosgeneral?companyId=${empresa.companyId}`);
       
       if (!response.ok) {
         throw new Error('Error al obtener los productos de la empresa');
@@ -89,7 +89,7 @@ const ProductosEmpresa = () => {
   // Función para guardar los cambios en el producto
   const handleSaveProduct = async () => {
     try {
-      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/editarproducto', {
+      const response = await fetch('https://api.maderasdelatlantico.com/api/Product/editarproducto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const ProductosEmpresa = () => {
   // Función para eliminar un producto
   const handleDeleteProduct = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/eliminarproducto?productId=${editProduct.productId}&companyId=${empresa.companyId}`, {
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Product/eliminarproducto?productId=${editProduct.productId}&companyId=${empresa.companyId}`, {
         method: 'DELETE',
       });
 
@@ -171,7 +171,7 @@ const ProductosEmpresa = () => {
   // Función para agregar un nuevo producto
   const handleAddProduct = async () => {
     try {
-      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/crearproducto', {
+      const response = await fetch('https://api.maderasdelatlantico.com/api/Product/crearproducto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

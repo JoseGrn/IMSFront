@@ -4,7 +4,7 @@ import Header from '../components/Header/Header';
 import '../styles/OrdenCompra.css';
 import Swal from 'sweetalert2';
 
-const OrdenCompra = () => {
+const OrdenCompraCliente = () => {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [productos, setProductos] = useState([]);
@@ -13,6 +13,7 @@ const OrdenCompra = () => {
   const [error, setError] = useState('');
   
   const companyId = localStorage.getItem('companyId');
+  const userId = localStorage.getItem('userId');
   const productsIdList = localStorage.getItem('productsIdList');
   const containerRef = useRef(null);
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const OrdenCompra = () => {
 
   const fetchPurchaseOrders = async () => {
     try {
-      const response = await fetch(`https://api.maderasdelatlantico.com/api/PurchaseOrder/obtenerallpurchaseorder?companyId=${companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/PurchaseOrder/obtenerclientpurchaseorder?companyId=${companyId}&userId=${userId}`);
       
       if (!response.ok) {
         throw new Error('Error al obtener las órdenes de compra');
@@ -104,11 +105,11 @@ const OrdenCompra = () => {
   };
 
   const handleExamine = (orderId, orderState) => {
-    navigate('/orden-compra-exam', { state: { productos, clientes, purchaseOrderId: orderId, orderState } });
+    navigate('/orden-compra-cliente-exam', { state: { productos, clientes, purchaseOrderId: orderId, orderState } });
   };
 
-  const handleEdit = (orderId) => {
-    navigate('/orden-compra-edit', { state: { productos, clientes, purchaseOrderId: orderId } });
+  const handleEdit = (orderId, orderState) => {
+    navigate('/orden-compra-cliente-edit', { state: { productos, clientes, purchaseOrderId: orderId} });
   };   
 
   const handleGoBack = () => {
@@ -116,7 +117,7 @@ const OrdenCompra = () => {
   };
 
   const handleCreateOrder = () => {
-    navigate('/orden-compra-create', { state: { productos, clientes, ultimaOrdenCompra } });
+    navigate('/orden-compra-cliente-create', { state: { productos, clientes, ultimaOrdenCompra } });
   };
 
   const getOrderStateText = (state) => {
@@ -188,4 +189,4 @@ const OrdenCompra = () => {
   );
 };
 
-export default OrdenCompra;
+export default OrdenCompraCliente;

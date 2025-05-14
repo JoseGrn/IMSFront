@@ -85,7 +85,7 @@ const CrearUsuario = () => {
   // Función para crear un nuevo usuario y regresar a la vista anterior
   const handleSaveUser = async () => {
     try {
-      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/crearuser', {
+      const response = await fetch('https://api.maderasdelatlantico.com/api/User/crearuser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,8 +95,6 @@ const CrearUsuario = () => {
           ...formValues, // Enviar todos los valores del formulario
         }),
       });
-
-      console.log(response);
 
       if (!response.ok) {
         throw new Error('Error al crear el usuario');

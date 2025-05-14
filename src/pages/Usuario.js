@@ -27,7 +27,7 @@ const Usuario = () => {
   // Función para obtener la lista de productos
   const obtenerProductos = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/obtenerlistaproductos?productos=${productsIdList}&companyId=${companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Product/obtenerlistaproductos?productos=${productsIdList}&companyId=${companyId}`);
       
       if (!response.ok) {
         throw new Error('Error al obtener la lista de productos');
@@ -43,7 +43,7 @@ const Usuario = () => {
   // Función para obtener la información de la empresa si el usuario tiene Role 1
   const obtenerEmpresa = async () => {
     try {
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Company/obtenerempresasbyid?companyId=${companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Company/obtenerempresasbyid?companyId=${companyId}`);
       
       if (!response.ok) {
         throw new Error('Error al obtener la información de la empresa');
@@ -58,8 +58,7 @@ const Usuario = () => {
 
   const obtenerProductosNombres = async () => {
     try {
-      console.log(empresa.companyId)
-      const response = await fetch(`http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
+      const response = await fetch(`https://api.maderasdelatlantico.com/api/Product/obtenerproductosnombres?companyId=${empresa.companyId}`);
 
       if (!response.ok) {
         throw new Error('Error al obtener los nombres de productos');
@@ -133,7 +132,7 @@ const Usuario = () => {
     console.log(updatedQuantity)
 
     try {
-      const url = `http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/Product/modificarcantidad?cantidad=${updatedQuantity}&productId=${selectedProduct.productId}&companyId=${companyId}&listaProductos=${productsIdList}`;
+      const url = `https://api.maderasdelatlantico.com/api/Product/modificarcantidad?cantidad=${updatedQuantity}&productId=${selectedProduct.productId}&companyId=${companyId}&listaProductos=${productsIdList}`;
 
       const response = await fetch(url, {
         method: 'POST',
@@ -163,14 +162,26 @@ const Usuario = () => {
     }
   };
 
-  // Función para redirigir a la vista de orden de compra
+  // Función para redirigir a la vista de orden de compra con validación de rol
   const handleCreateOrder = () => {
-    navigate('/orden-compra');
+    if (role === 1 || role === 2) {
+      navigate('/orden-compra'); // Redirige a OrdenCompra.js si el rol es 1 o 2
+    } else if (role === 3) {
+      navigate('/orden-compra-cliente'); // Redirige a OrdenCompraCliente.js si el rol es 3
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Acceso Denegado',
+        text: 'No tienes permiso para acceder a esta página.',
+        showConfirmButton: true
+      });
+    }
   };
+
 
   // Función para redirigir a la vista de envio
   const handleCreateShipment = () => {
-    navigate('/envio');
+    navigate('/envio', { state: { companyId } });
   };
 
   const handleUsuariosClick = () => {
@@ -272,12 +283,12 @@ const Usuario = () => {
           ) : null}
           {role === 1 || role === 2 || role === 3 ? (
             <Button variant="success" onClick={handleCreateOrder} className="create-shipment-button">
-              Crear Orden de Compra
+              Ordenes de Compra
             </Button>
           ) : null}
           {role === 1 || role === 2 ? (
             <Button variant="success" onClick={handleCreateShipment} className="create-shipment-button">
-              Crear Envío
+              Envíos
             </Button>
           ) : null}
         </div>

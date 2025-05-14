@@ -85,7 +85,7 @@ const DetallesUsuario = () => {
   // Función para guardar cambios del usuario y regresar a la vista anterior
   const handleSaveUser = async () => {
     try {
-      const response = await fetch('http://ec2-18-117-218-240.us-east-2.compute.amazonaws.com:6001/api/User/editarusuario', {
+      const response = await fetch('https://api.maderasdelatlantico.com/api/User/editarusuario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
